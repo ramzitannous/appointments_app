@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "479674361896",
+    "project_id": "appointments-app-b48d6",
+    "storage_bucket": "appointments-app-b48d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:479674361896:android:4f40b21f97631d8118ed1d",
+        "android_client_info": {
+          "package_name": "com.appointments_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "479674361896-v972g3itnj3eiptggsfp475m1jmvpl1s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8J813nlrdY0_t0oZVxqMbxLSJWtj52Uw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "479674361896-v972g3itnj3eiptggsfp475m1jmvpl1s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "479674361896-4ja8eur0nkt76r5s8vgdj2uq42e442m2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.appointmens.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
