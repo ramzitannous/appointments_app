@@ -1,6 +1,6 @@
 export const ROUTES = {
   LOGIN: 'Login',
-  CREATE_ACCOUNT: 'createAccount',
+  CREATE_ACCOUNT: 'CreateAccount',
   HOME: 'Home',
   DATE: 'Date',
   TIME: 'Time',
