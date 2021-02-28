@@ -32,7 +32,7 @@ export const TimeScreen = () => {
   const submitTime = () => {
     const time =
       selectedMode === TIME_MODES.specific
-        ? {time: formatTime(selectedTime)}
+        ? formatTime(selectedTime)
         : {start: formatTime(startTime), end: formatTime(endTime)};
     dispatch(setTime({mode: selectedMode, time}));
     // no need to wait

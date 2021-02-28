@@ -49,6 +49,7 @@ export const LoginScreen = () => {
           id: result.user.uid,
         };
         dispatch(setUser({user, isAuthenticated: true}));
+        // reset stack history
         navigation.reset({
           index: 0,
           routes: [{name: ROUTES.HOME}],
@@ -90,11 +91,10 @@ export const LoginScreen = () => {
         />
       </InputWrapper>
       {error && <Error>{error}</Error>}
-      <PrimaryButton
-        onPress={login}
-        disabled={!email.length || !password.length}
-        title={'Next'}
-      />
+
+      {email.length && password.length ? (
+        <PrimaryButton onPress={login} title={'Login'} />
+      ) : null}
     </Container>
   );
 };

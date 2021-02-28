@@ -40,7 +40,6 @@ export const CreateAccountScreen = () => {
       setCreated(true);
       clearInputs();
     } catch (e) {
-      console.error(e);
       if (error.code === 'auth/email-already-in-use') {
         setError('That email address already exists !');
       }

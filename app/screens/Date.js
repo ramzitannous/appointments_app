@@ -12,6 +12,7 @@ import {ROUTES} from '../navigation/routes';
 import {useNavigation} from '@react-navigation/core';
 import {DATE_MODES} from '../utils/constants';
 import {addAppointmentData} from '../utils/db_utils';
+import moment from 'moment';
 
 const Container = styled.KeyboardAvoidingView`
   flex: 1;
@@ -29,7 +30,7 @@ const selectedDateTheme = {
 
 export const DateScreen = () => {
   const [selectedMode, setSelectedMode] = useState(DATE_MODES.specific);
-  const [date1, setDate1] = useState(undefined);
+  const [date1, setDate1] = useState(formatDate(moment())); //choose today by default
   const [date2, setDate2] = useState(undefined);
   const [markedDates, setMarkedDates] = useState({});
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ export const DateScreen = () => {
       setMarkedDates({});
       return;
     }
+    // mark all dates between 2 dates
     let startDate = parseDate(date1);
     let endDate = parseDate(date2);
     if (startDate > endDate) {
@@ -66,7 +68,7 @@ export const DateScreen = () => {
         return previousMarkedDates;
       }, {}),
     );
-  }, [date2]);
+  }, [date1, date2]);
 
   const onDayPress = (selectedDate) => {
     // todo some edge cases are not taken into account
@@ -88,7 +90,18 @@ export const DateScreen = () => {
         // date 2 unselected set it
         setDate2(selectedDate);
       } else if (date1 && date2) {
-        setDate2(selectedDate);
+        // change dates when already they are set
+        const m1 = parseDate(date1);
+        const m2 = parseDate(date2);
+        const selectedMoment = parseDate(selectedDate);
+        if (selectedMoment < m1) {
+          setDate2(date1);
+          setDate1(selectedDate);
+        } else if (m1 > selectedDate && m2 < selectedDate) {
+          setDate1(selectedDate);
+        } else {
+          setDate2(selectedDate);
+        }
       }
     }
   };
@@ -131,14 +144,16 @@ export const DateScreen = () => {
             [date1]: {
               selected: !!date1,
               marked: false,
-              startingDay: selectedMode === DATE_MODES.range && !!date1,
+              startingDay:
+                selectedMode === DATE_MODES.range && !!date1 && !!date2,
               color: AppColors.primary,
             },
             ...markedDates,
             [date2]: {
               selected: !!date2,
               marked: false,
-              endingDay: selectedMode === DATE_MODES.range && !!date2,
+              endingDay:
+                selectedMode === DATE_MODES.range && !!date2 && !!date1,
               color: AppColors.primary,
             },
           }}
